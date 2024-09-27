@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+    <title>Calculadora de Pagamento de Hipoteca</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Seção de entrada de dados -->
+        <section class="inputs-block">
+            <header class="inputs-block__header">
+                <h1>Calculadora de Hipoteca</h1>
+                <a href="#" id="clear-all">Limpar Tudo</a>
+            </header>
+            
+            <!-- Campo: Valor da Hipoteca -->
+            <div class="inputs-block__field">
+                <label for="MortgageAmount">Valor da Hipoteca</label>
+                <div class="inputs-block__field-container">
+                    <span class="currency-symbol"> R$ </span>
+                    <input type="number" id="MortgageAmount" min="0" step="1000">
+                </div>
+                <span class="error-message" id="mortgage-error"></span>
+            </div>
+            
+            <!-- Campos: Prazo e Taxa de Juros -->
+            <div class="inputs-block__field inputs-block__field--term-interest">
+                <div class="term">
+                    <label for="MortgageTerm">Prazo da Hipoteca</label>
+                    <div class="inputs-block__field-container">
+                        <input type="number" id="MortgageTerm" min="1" max="30">
+                        <span class="unit">anos</span>
+                    </div>
+                </div>
+                <div class="interest">
+                    <label for="InterestRate">Taxa de Juros</label>
+                    <div class="inputs-block__field-container">
+                        <input type="number" id="InterestRate" min="0" max="100" step="0.1">
+                        <span class="unit">%</span>
+                    </div>
+                    <span class="error-message" id="interest-error"></span>
+                </div>
+            </div>
+            
+            <!-- Campo: Tipo de Hipoteca -->
+            <div class="inputs-block__field inputs-block__field--mortgage-type">
+                <fieldset>
+                    <legend>Tipo de Hipoteca</legend>
+                    <div class="radio-group">
+                        <input type="radio" id="Repayment" name="MortgageType" value="Repayment">
+                        <label for="Repayment">Pagamento</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="InterestOnly" name="MortgageType" value="Interest Only">
+                        <label for="InterestOnly">Apenas Juros</label>
+                    </div>
+                </fieldset>
+            </div>
+            
+            <!-- Botão de Calcular -->
+            <div class="inputs-block__field inputs-block__field--calculate">
+                <button id="calculate-button" class="calculate-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path fill="#133041" d="M18.75 2.25H5.25a1.5 1.5 0 0 0-1.5 1.5v16.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V3.75a1.5 1.5 0 0 0-1.5-1.5Zm-10.5 16.5a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 18.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 15a1.125 1.125 0 1 1 0-2.25A1.125 1.125 0 0 1 12 15Zm3.75 3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm1.5-5.25a.75.75 0 0 1-.75.75h-9a.75.75 0 0 1-.75-.75V6a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v3.75Z" />
+                    </svg>
+                    <span>Calcular Pagamentos</span>
+                </button>
+            </div>
+        </section>
+        <!-- Seção de resultados -->
+        <section class="results-block">
+            <!-- Estado pré-cálculo -->
+            <div class="results-block__pre-calculate">
+                <img src="mortgage-repayment-calculator-main/assets/images/illustration-empty.svg" alt="Ilustração de calculadora">
+                <h2>Resultados serão mostrados aqui</h2>
+                <p>Preencha o formulário e clique em "Calcular Pagamentos" para ver quais seriam seus pagamentos mensais.</p>
+            </div>
+            <!-- Estado pós-cálculo -->
+            <div class="results-block__post-calculate" style="display:none;">
+                <h2>Seus resultados</h2>
+                <p>Seus resultados são mostrados abaixo com base nas informações que você forneceu. Para ajustar os resultados, preencha o formulário e clique novamente em "Calcular Pagamentos".</p>
+                <div class="results-block__results-box">
+                    <div class="result-item">
+                        <label for="MonthlyRepayments">Seus pagamentos mensais</label>
+                        <output id="MonthlyRepayments">R$ 0,00</output>
+                    </div>
+                    <div class="result-item">
+                        <label for="TotalRepayments">Total que você pagará durante o prazo</label>
+                        <output id="TotalRepayments">R$ 0,00</output>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Rodapé -->
+    <footer class="attribution">
+        Desafio por <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+        Codificado por <a href="#">William Mercês</a>.
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
