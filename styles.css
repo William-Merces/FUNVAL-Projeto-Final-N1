@@ -272,7 +272,7 @@ body {
 .inputs-block__field--mortgage-type input[type="radio"]:checked {
     border-color: #dce91e;
     border-color: #dce91e;
-    background-color: 
+    background-color: #dce91e56
 }
 
 .inputs-block__field--mortgage-type input[type="radio"]:checked::after {
