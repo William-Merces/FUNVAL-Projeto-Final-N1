@@ -1,4 +1,21 @@
-html, body {
+/* Reset e estilos globais */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Estilos específicos para certos elementos */
+.inputs-block,
+.results-block,
+.inputs-block__field-container,
+.inputs-block__field-container input {
+    box-sizing: border-box;
+}
+
+/* Estilos básicos para html e body */
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -6,12 +23,13 @@ html, body {
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #dbeeff;
+    background-color: #ffffff;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
 }
 
+/* Estilos do container principal */
 .container {
     display: flex;
     flex-direction: column;
@@ -21,61 +39,12 @@ body {
     margin: auto;
 }
 
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-    }
+/* Estilo do background */
+#background {
+    background-color: #9dc2e3;
 }
 
-@media (min-width: 1240px) {
-    .container {
-        max-width: 1200px;
-    }
-}
-
-@media (max-width: 767px) {
-    .container {
-        padding: 10px;
-    }
-
-    .inputs-block,
-    .results-block {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 20px;
-        margin-bottom: 20px;
-    }
-
-    .inputs-block {
-        border-radius: 20px 20px 0 0;
-    }
-
-    .results-block {
-        border-radius: 0 0 20px 20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        align-items: stretch;
-    }
-
-    .inputs-block,
-    .results-block {
-        flex: 1;
-        width: 50%;
-    }
-
-    .inputs-block {
-        border-radius: 20px 0 0 20px;
-    }
-
-    .results-block {
-        border-radius: 0 20px 20px 0;
-    }
-}
-
+/* Estilos para os campos de entrada */
 .inputs-block__field--term-interest {
     display: flex;
     flex-direction: column;
@@ -87,82 +56,56 @@ body {
     width: 100%;
 }
 
+/* Estilos para os containers dos campos de entrada */
 .inputs-block__field-container {
     display: flex;
-    align-items: center;
     background-color: #dbeeff;
     border: 1px solid #9dc2e3;
     margin-bottom: 15px;
     width: 100%;
-    position: relative;
+    overflow: hidden;
 }
 
 .inputs-block__field-container input {
-    width: 100%;
+    flex-grow: 1;
     padding: 10px;
     border: none;
     outline: none;
     font-size: 1rem;
-    background-color: transparent;
+    background-color: #ffffff;
 }
 
+/* Estilos para a unidade nos campos de entrada */
 .inputs-block__field-container .unit {
-    position: absolute;
-    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    background-color: #dbeeff;
     color: #467192;
     font-size: 1rem;
-    pointer-events: none;
+    font-weight: bold;
 }
 
-@media (min-width: 768px) {
-    .inputs-block__field--term-interest {
-        flex-direction: row;
-    }
-
-    .term,
-    .interest {
-        width: calc(50% - 10px);
-    }
-}
-
-#InterestRate {
-    padding-right: 30px;
-}
-
-.inputs-block__field-container {
+/* Estilo específico para o campo de valor da hipoteca */
+.inputs-block__field-container .currency-symbol {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 0 10px;
     background-color: #dbeeff;
-    border: 1px solid #9dc2e3;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.inputs-block__field-container input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    outline: none;
+    color: #467192;
     font-size: 1rem;
-    background-color: transparent;
+    font-weight: bold;
 }
 
-#InterestRate {
-    padding-right: 30px;
-}
-
-.inputs-block__field-container .unit {
-    position: absolute;
-    right: 10px;
-}
-
+/* Estilos para o bloco de entradas */
 .inputs-block {
     background-color: #ffffff;
     font-size: 16px;
     color: #0d2e47;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     min-height: 600px;
     border-radius: 20px 0 0 20px;
 }
@@ -174,41 +117,7 @@ body {
     margin-bottom: 20px;
 }
 
-.inputs-block__field-container {
-    display: flex;
-    align-items: center;
-    background-color: #dbeeff;
-    border: 1px solid #9dc2e3;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.inputs-block__field-container input {
-    width: calc(100% - 50px);
-    padding: 10px 10px 10px 0px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    background-color: #ffffff;
-}
-
-#MortgageAmount {
-    padding: 10px 0px 10px 30px;
-}
-#InterestRate {
-    padding: 10px 10px 10px 5px;
-}
-#MortgageTerm {
-    padding: 10px 0px 8px 1px;
-}
-.inputs-block__field-container .currency-symbol,
-.inputs-block__field-container .unit {
-    color: #467192;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 1px;
-}
-
+/* Estilos para os campos de prazo e taxa de juros */
 .inputs-block__field-term-interest-container {
     display: flex;
     gap: 20px;
@@ -219,6 +128,7 @@ body {
     flex: 1;
 }
 
+/* Estilos para o campo de tipo de hipoteca */
 .inputs-block__field--mortgage-type fieldset {
     border: none;
     padding: 0;
@@ -291,6 +201,7 @@ body {
     border-color: #dce91e;
 }
 
+/* Estilos para o botão de calcular */
 .calculate-button {
     margin-top: 20px;
     font-family: plus-jakarta-sans, sans-serif;
@@ -315,6 +226,7 @@ body {
     color: #ffffff;
 }
 
+/* Estilos para o bloco de resultados */
 .results-block {
     padding: 30px;
     background-color: #467192;
@@ -376,6 +288,7 @@ body {
     margin-top: 20px;
 }
 
+/* Estilos para tratamento de erros */
 .error {
     border-color: #e03131 !important;
 }
@@ -387,6 +300,7 @@ body {
     display: none;
 }
 
+/* Estilos para o bloco de resultados antes do cálculo */
 .results-block__pre-calculate {
     display: flex;
     flex-direction: column;
@@ -396,6 +310,7 @@ body {
     height: 100%;
 }
 
+/* Estilos de foco para acessibilidade */
 input:focus,
 button:focus,
 a:focus {
@@ -404,14 +319,20 @@ a:focus {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .results-block__post-calculate {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Estilos para a atribuição (rodapé) */
 .attribution {
     font-size: 11px;
     text-align: center;
@@ -419,5 +340,94 @@ a:focus {
     right: 0;
     bottom: 10px;
     padding: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 40px;}
+
+/* Media queries para responsividade */
+/**
+ * Small screen size
+ */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+
+/**
+ * Medium screen size
+ */
+@media (min-width: 1240px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/**
+ * Extra small screen size
+ */
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+
+    .inputs-block,
+    .results-block {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .inputs-block {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .results-block {
+        border-radius: 0 0 20px 20px;
+    }
+}
+
+/**
+ * Small screen size
+ */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .inputs-block,
+    .results-block {
+        flex: 1;
+        width: 50%;
+    }
+
+    .inputs-block {
+        border-radius: 20px 0 0 20px;
+        box-shadow:
+            0 -8px 10px -5px rgba(0, 0, 0, 0.1),
+            /* Topo */
+            -8px 0 10px -5px rgba(0, 0, 0, 0.1),
+            /* Esquerda */
+            0 8px 10px -5px rgba(0, 0, 0, 0.1),
+            /* Embaixo */
+            5px 0 10px -5px rgba(0, 0, 0, 0);
+        /* Direita */
+    }
+
+    .results-block {
+        border-radius: 0px 20px 20px 80px;
+    }
+}
+
+/**
+ * Medium screen size
+ */
+@media (min-width: 768px) {
+    .inputs-block__field--term-interest {
+        flex-direction: row;
+    }
+
+    .term,
+    .interest {
+        width: calc(50% - 10px);
+    }
 }
